@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="default">
+    <gravity>0 0 0</gravity>
+    <scene>
+      <ambient>0.1 0.1 0.1 1</ambient>
+	<background>0.1 0.1 0.1 1</background>
+	<shadows>0</shadows>
+      </scene>
+  
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 -10 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>1 1 1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>0 1 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    
+    <model name="my_mesh">
+      <pose>0 2 1 0 0 -1.57</pose>
+      <static>false</static>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <!--<mesh><uri>/home/victor/Desktop/bernhard/models/aVis/deosClientMockupRaw.obj</uri><scale>1 1 1</scale></mesh>-->
+            <mesh><uri>/home/victor/Downloads/deosClientMockupRaw.obj</uri><scale>1 1 1</scale></mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    
+    <model name='servicer_camera'>
+      <static>false</static>
+      <pose>0 0 1 0 0 1.57</pose>
+      <link name='servicer_camera'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name='servicer_camera' type='camera'>
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>1280</width>
+              <height>720</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+		<alwaysOn>true</alwaysOn>
+		<updateRate>30</updateRate>
+		<cameraName>servicer_camera</cameraName>
+		<imageTopicName>image_raw</imageTopicName>
+		<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+		<frameName>servicer_camera</frameName>
+	      </plugin>
+        </sensor>
+      </link>
+    </model>
+  </world>
+</sdf>
