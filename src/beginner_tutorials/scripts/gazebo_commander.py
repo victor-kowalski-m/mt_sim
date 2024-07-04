@@ -11,7 +11,7 @@ if __name__ == "__main__":
     sms = SetModelStateRequest()
     sms.model_state.model_name = "servicer_camera"
     sms.model_state.pose.position.x = -0.5
-    sms.model_state.pose.position.z = 0
+    sms.model_state.pose.position.z = 0.5
     sms.model_state.pose.orientation.x = 0
     sms.model_state.pose.orientation.y = 0
     sms.model_state.pose.orientation.z = 0.70710678
@@ -20,12 +20,31 @@ if __name__ == "__main__":
     while True:
         rospy.sleep(0.01)
         resp = set_model(sms)
+        print("z:", sms.model_state.pose.position.z, "\n", resp)
+        sms.model_state.pose.position.z += 0.004
+        if sms.model_state.pose.position.z>= 1.5:
+            break     
+    while True:
+        rospy.sleep(0.01)
+        resp = set_model(sms)
         print("x:", sms.model_state.pose.position.x, "\n", resp)
-        sms.model_state.pose.position.x += 0.002
-        z_ang += 0.05
-        sms.model_state.pose.position.z = z_start+0.2*np.sin(z_ang)
-        if sms.model_state.pose.position.x >= 0:
-            break        
+        sms.model_state.pose.position.x += 0.004
+        if sms.model_state.pose.position.x>= 0.5:
+            break   
+    while True:
+        rospy.sleep(0.01)
+        resp = set_model(sms)
+        print("z:", sms.model_state.pose.position.z, "\n", resp)
+        sms.model_state.pose.position.z -= 0.004
+        if sms.model_state.pose.position.z<= 0.5:
+            break     
+    while True:
+        rospy.sleep(0.01)
+        resp = set_model(sms)
+        print("x:", sms.model_state.pose.position.x, "\n", resp)
+        sms.model_state.pose.position.x -= 0.004
+        if sms.model_state.pose.position.x<= -0.5:
+            break  
 
     # z_start = sms.model_state.pose.position.z 
     # z_ang = 0
