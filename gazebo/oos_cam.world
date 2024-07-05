@@ -7,6 +7,9 @@
 	<background>0.1 0.1 0.1 1</background>
 	<shadows>0</shadows>
       </scene> -->
+    <scene>
+      <shadows>false</shadows>
+    </scene>
   
     <light name='sun' type='directional'>
       <cast_shadows>0</cast_shadows>
@@ -28,7 +31,7 @@
     </light>
     
     <model name="my_mesh">
-      <pose>0 3 1 1.57 0 0</pose>
+      <pose>0 4 1 1.4 0 0</pose>
       <static>false</static>
       <link name="body">
         <visual name="visual">
