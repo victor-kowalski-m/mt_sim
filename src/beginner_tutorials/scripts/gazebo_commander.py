@@ -9,9 +9,9 @@ import numpy as np
 if __name__ == "__main__":
     set_model = rospy.ServiceProxy("/gazebo/set_model_state", SetModelState)
     sms = SetModelStateRequest()
-    sms.model_state.model_name = "servicer_camera"
-    sms.model_state.pose.position.x = -0.5
-    sms.model_state.pose.position.z = 0.5
+    sms.model_state.model_name = "camera"
+    sms.model_state.pose.position.x = -0.3
+    sms.model_state.pose.position.z = 0.8
     sms.model_state.pose.orientation.x = 0
     sms.model_state.pose.orientation.y = 0
     sms.model_state.pose.orientation.z = 0.70710678
@@ -22,28 +22,28 @@ if __name__ == "__main__":
         resp = set_model(sms)
         print("z:", sms.model_state.pose.position.z, "\n", resp)
         sms.model_state.pose.position.z += 0.004
-        if sms.model_state.pose.position.z>= 1.5:
+        if sms.model_state.pose.position.z>= 1.2:
             break     
     while True:
         rospy.sleep(0.01)
         resp = set_model(sms)
         print("x:", sms.model_state.pose.position.x, "\n", resp)
         sms.model_state.pose.position.x += 0.004
-        if sms.model_state.pose.position.x>= 0.5:
+        if sms.model_state.pose.position.x>= 0.3:
             break   
     while True:
         rospy.sleep(0.01)
         resp = set_model(sms)
         print("z:", sms.model_state.pose.position.z, "\n", resp)
         sms.model_state.pose.position.z -= 0.004
-        if sms.model_state.pose.position.z<= 0.5:
+        if sms.model_state.pose.position.z<= 0.8:
             break     
     while True:
         rospy.sleep(0.01)
         resp = set_model(sms)
         print("x:", sms.model_state.pose.position.x, "\n", resp)
         sms.model_state.pose.position.x -= 0.004
-        if sms.model_state.pose.position.x<= -0.5:
+        if sms.model_state.pose.position.x<= -0.3:
             break  
 
     # z_start = sms.model_state.pose.position.z 
