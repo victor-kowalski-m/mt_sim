@@ -38,20 +38,43 @@
           <geometry>
             <!--<mesh><uri>/home/victor/Desktop/bernhard/models/aVis/deosClientMockupRaw.obj</uri><scale>1 1 1</scale></mesh>-->
             <mesh><uri>/home/victor/catkin_ws/models/sat_free/10477_Satellite_v1_L3.obj</uri><scale>0.001 0.001 0.001</scale></mesh>
+            <!-- <mesh><uri>/home/victor/Downloads/IceSat2/untitled.obj</uri><scale>1 1 1</scale></mesh> -->
           </geometry>
         </visual>
       </link>
     </model>
     
-    <model name='camera'>
+    <model name='robot'>
       <static>false</static>
-      <pose>0 0 1 0 0 1.57</pose>
-      <link name='camera'>
+      <pose>0 0 1 0 0 1.570796</pose>
+      <link name='com'>
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.1 0.1 0.1</size>
+              <size>0.32 0.32 0.32</size>
             </box>
+          </geometry>
+        </visual>
+        <inertial>
+        <mass>9.58</mass>
+        <inertia>
+          <ixx>0.153</ixx>
+          <iyy>0.143</iyy>
+          <izz>0.162</izz>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+        </inertia>
+      </inertial>
+      </link>
+      <link name='camera'>
+        <pose>0.1177 -0.0422 -0.0826 0 0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.05 0.05</size>
+            </box>
+
           </geometry>
         </visual>
         <sensor name='camera' type='camera'>
@@ -61,21 +84,54 @@
               <width>528</width>
               <height>406</height>
             </image>
-            <!-- <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip> -->
           </camera>
           <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-		<alwaysOn>true</alwaysOn>
-		<updateRate>30</updateRate>
-		<cameraName>camera</cameraName>
-		<imageTopicName>image_raw</imageTopicName>
-		<cameraInfoTopicName>camera_info</cameraInfoTopicName>
-		<frameName>camera</frameName>
-	      </plugin>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+	        </plugin>
         </sensor>
       </link>
+      <joint name="cam_joint" type="fixed">
+        <pose>0.0 0.0 0 0 0 0</pose>
+        <parent>com</parent>
+        <child>camera</child>
+      </joint>
+
+      <link name='imu_link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.5</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="imu_sensor" type="imu">
+          <always_on>true</always_on>
+          <update_rate>1</update_rate>
+          <visualize>true</visualize>
+          <topic>__default_topic__</topic>
+          <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <topicName>imu</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>1.0</updateRateHZ>
+            <gaussianNoise>0.0</gaussianNoise>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+            <initialOrientationAsReference>false</initialOrientationAsReference>
+          </plugin>
+        </sensor>
+      </link>
+      <joint name="imu_joint" type="fixed">
+        <pose>0.0 0.0 0 0 0 0</pose>
+        <parent>com</parent>
+        <child>imu_link</child>
+      </joint>
+
     </model>
   </world>
 </sdf>
