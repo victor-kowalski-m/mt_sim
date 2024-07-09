@@ -20,6 +20,12 @@ OR, with SLAM ROS:
 6. `rosrun ORB_SLAM3 Mono Vocabulary/ORBvoc.txt Examples/Monocular/my_cam.yaml` (in ORB_SLAM3/ possibly delete CamFrames.txt, Keypoints*.txt, *Map.txt. Run ./build.sh and ./build_ros.sh)
 7. `rosrun beginner_tutorials gazebo_commander.py`
 
-Do control 6 in terminal 6.
+Do CTRL-C in terminal 6.
+
+rosrun ORB_SLAM3 Mono_Inertial Vocabulary/ORBvoc.txt /home/victor/ORB_SLAM3/Examples/Monocular-Inertial/my_cam.yaml true	
+
+
+
+
 
 

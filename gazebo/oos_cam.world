@@ -30,19 +30,18 @@
       </spot>
     </light>
     
-    <model name="my_mesh">
-      <pose>0 4 1 1.4 0 0</pose>
+    
+    <!-- <model name="my_mesh">
+      <pose>0 2.5 1 0 0 0</pose>
       <static>false</static>
       <link name="body">
         <visual name="visual">
           <geometry>
-            <!--<mesh><uri>/home/victor/Desktop/bernhard/models/aVis/deosClientMockupRaw.obj</uri><scale>1 1 1</scale></mesh>-->
             <mesh><uri>/home/victor/catkin_ws/models/sat_free/10477_Satellite_v1_L3.obj</uri><scale>0.001 0.001 0.001</scale></mesh>
-            <!-- <mesh><uri>/home/victor/Downloads/IceSat2/untitled.obj</uri><scale>1 1 1</scale></mesh> -->
           </geometry>
         </visual>
       </link>
-    </model>
+    </model> -->
     
     <model name='robot'>
       <static>false</static>
@@ -74,15 +73,14 @@
             <box>
               <size>0.15 0.05 0.05</size>
             </box>
-
           </geometry>
         </visual>
         <sensor name='camera' type='camera'>
           <camera>
-            <horizontal_fov>0.7367</horizontal_fov>
+            <horizontal_fov>1.6</horizontal_fov>
             <image>
-              <width>528</width>
-              <height>406</height>
+              <width>1250</width>
+              <height>1030</height>
             </image>
           </camera>
           <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
@@ -133,5 +131,77 @@
       </joint>
 
     </model>
+
+    <model name='iss'>
+      <link name='body'>
+        <!-- <visual name='body_fixed_joint_lump__iss_cupola_visual_visual'>
+          <pose>-4.45861 -6.8357 6.84342 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.5 1.5 1.5</scale>
+              <uri>model://astrobee_iss/meshes/cupola.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='body_fixed_joint_lump__iss_eu_lab_visual_visual_1'>
+          <pose>10.9326 2.35097 4.85059 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.5 1.5 1.5</scale>
+              <uri>model://astrobee_iss/meshes/eu_lab.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='body_fixed_joint_lump__iss_jpm_visual_visual_2'>
+          <pose>10.9359 -2.33647 4.85059 3.1415 -0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1.5 1.5 1.5</scale>
+              <uri>model://astrobee_iss/meshes/jpm.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='body_fixed_joint_lump__iss_node_1_visual_visual_3'>
+          <pose>-4.46309 -0.002743 4.85087 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.5 1.5 1.5</scale>
+              <uri>model://astrobee_iss/meshes/node_1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='body_fixed_joint_lump__iss_node_2_visual_visual_4'>
+          <pose>10.9744 -0.011256 4.8359 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.5 1.5 1.5</scale>
+              <uri>model://astrobee_iss/meshes/node_2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='body_fixed_joint_lump__iss_node_3_visual_visual_5'>
+          <pose>-4.45861 -6.6357 4.84342 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1.5 1.5 1.5</scale>
+              <uri>model://astrobee_iss/meshes/node_3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual> -->
+        <visual name='body_fixed_joint_lump__iss_us_lab_visual_visual_6'>
+          <pose>6.30855 0.006477 4.83489 3.1415 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>2 2 2</scale>
+              <uri>model://astrobee_iss/meshes/us_lab.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      <static>1</static>
+      <pose>1 0 -3.5 0 0 0</pose>
+    </model>0
   </world>
 </sdf>
+
+
