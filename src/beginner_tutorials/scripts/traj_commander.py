@@ -10,7 +10,7 @@ import sys
 
 
 def traj_commander():
-    traj = np.load("/home/victor/catkin_ws/data/trajectory.npy")
+    traj = np.load("/home/victor/catkin_ws/data/trajs_to_command/parsed/astro_spin.npy")
 
     set_model = rospy.ServiceProxy("/gazebo/set_model_state", SetModelState)
     sms = SetModelStateRequest()
@@ -20,7 +20,7 @@ def traj_commander():
     imu = Imu()
 
     rospy.init_node('traj_commander', anonymous=True)
-    rate = rospy.Rate(100) # 100hz
+    rate = rospy.Rate(20) # 100hz
     for state in traj:
         # print("z:", sms.model_state.pose.position.z, "\n", resp)
         sms.model_state.pose.position.x = state[0]
