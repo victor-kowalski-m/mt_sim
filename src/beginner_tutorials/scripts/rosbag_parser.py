@@ -2,6 +2,7 @@ import rosbag
 from gazebo_msgs.msg import ModelStates
 from rospy import Time
 from scipy.spatial.transform import Rotation as R
+from quat_to_rotvec import to_rotvec
 
 
 def parse_rosbag(input, output):
@@ -22,20 +23,6 @@ def parse_rosbag(input, output):
             ]
             parsed.write(" ".join([f"{i:.4f}" for i in pose])+"\n")
         bag.close()
-
-def to_rotvec(input, output):
-    all = []
-    with open(input, "r") as f:
-        lines = f.readlines()
-        for line in lines:
-            items = line.split(" ")
-            items = [float(i) for i in items if i != ""]
-            quat = R.from_quat(items[4:])
-            items = items[:4] + quat.as_rotvec().tolist()
-            all.append(items)
-    with open(output, "w") as f:    
-        for state in all:
-            f.write(" ".join([f"{i:.4f}" for i in state])+"\n")
 
 in_real_traj_bag = '/home/victor/catkin_ws/data/bags/2024-07-07-20-41-25.bag'
 out_real_traj_txt = '/home/victor/catkin_ws/data/resulting_trajs/real2024-07-07-20-41-25.txt'
