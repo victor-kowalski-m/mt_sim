@@ -259,7 +259,7 @@
 
     <model name='target_astrobee'>
       <static>false</static>
-      <pose>2 0 1.3 0 0 3.1415</pose>
+      <pose>0.5 0 1.4 0 0 3.1415</pose>
       <link name='com'>
         <visual name='body_fixed_joint_lump__body_visual_visual'>
           <pose>0 0 0 0 -0 0</pose>
@@ -307,8 +307,8 @@
           </geometry>
         </visual>
       </link>
-
     </model>
+
   </world>
 </sdf>
 

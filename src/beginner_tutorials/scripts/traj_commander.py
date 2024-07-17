@@ -7,19 +7,27 @@ from sensor_msgs.msg import Imu
 import rospy
 import numpy as np
 import sys
-
+from scipy.spatial.transform import Rotation as R
 
 def traj_commander():
-    freq = 10
-    duration = 20
-    n_points = freq*duration
+    freq = 100
+    
+    traj = np.load("/home/victor/catkin_ws/data/trajs_to_command/parsed/rrt_ur_32.npy")
 
-    traj = np.load("/home/victor/catkin_ws/data/trajs_to_command/parsed/astro_spin.npy")
+    # duration = 40
+    # n_points = freq*duration
 
-    traj = []
-    x_points = np.linspace(-2.5, 1.6, n_points)
-    for i in range(n_points):
-        traj.append([x_points[i], 0, 1.3, 0, 0, 0, 1])
+    # quat = R.from_rotvec([0, 0, 0*np.pi/2]).as_quat().tolist()
+    # quat = R.from_rotvec([0, 0, np.pi]).as_quat().tolist()
+    # print(quat)
+    # quat = R.from_rotvec([0, 0, -np.pi]).as_quat().tolist()
+    # print(quat)
+    # sys.exit()
+
+    # traj = []
+    # x_points = np.linspace(-2.5, 1.5, n_points)
+    # for i in range(n_points):
+    #     traj.append([x_points[i], 0, 1.4]+[0, 0, 0, 0])
     
 
     set_model = rospy.ServiceProxy("/gazebo/set_model_state", SetModelState)

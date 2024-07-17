@@ -6,6 +6,6 @@
         <param name="frame_id" value="camera" />
         <param name="sleep" value="0" />
         <param name="loop" value="1" />
-        <param name="image_folder" value="/home/victor/Downloads/CL straight 2.2" />
+        <param name="image_folder" value="/home/victor/Downloads/CL 1.1" />
     </node>
 </launch>

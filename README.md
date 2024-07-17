@@ -24,7 +24,31 @@ Do CTRL-C in terminal 6.
 
 rosrun ORB_SLAM3 Mono_Inertial Vocabulary/ORBvoc.txt /home/victor/ORB_SLAM3/Examples/Monocular-Inertial/my_cam.yaml true	
 
+C++:
+1. test_optimizer
+2. gen_traj_to_slam_opt
 
+Drive
+
+Ubuntu/ROS/SLAM
+1. bspline_parser.py
+2. create dir in maps
+3. record rosbag in it
+4. traj_commander + all mapping steps....  / video recording
+5. copy slam files to created dir in maps
+6. rosbag_parser.py
+7. copy video to dir in maps
+
+Drive
+
+MATLAB
+
+1. Copy 2 of test_sim_map ?
+
+Tomorrow: get traj w10 -3.13
+
+Let RRT*-GBO run, collect some solutions.
+- w09
 
 
 

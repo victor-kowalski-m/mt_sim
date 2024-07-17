@@ -8,7 +8,7 @@ import sys
 import os
 from os import listdir
 from os.path import isfile, join
-
+import datetime
 import rospy
 import cv2
 
@@ -73,7 +73,9 @@ class image_folder_publisher:
                             if cv_image is not None:
                                 ros_msg = self._cv_bridge.cv2_to_imgmsg(cv_image, "bgr8")
                                 ros_msg.header.frame_id = self._frame_id
-                                ros_msg.header.stamp = rospy.Time.now()
+                                pic_name = f.split(".")[0]
+
+                                ros_msg.header.stamp = rospy.Time(nsecs=int(pic_name)*10**(19-len(pic_name)))
                                 self._image_publisher.publish(ros_msg)
                                 info_msg = CameraInfo()
                                 info_msg.header.frame_id = self._frame_id
@@ -86,6 +88,8 @@ class image_folder_publisher:
 
                                 # self._info_publisher.publish(info_msg)
                                 rospy.loginfo("[%s] Published %s", self.__app_name, join(self._image_folder, f))
+                                rospy.loginfo(f"Timestamp: {ros_msg.header.stamp}")
+                                rospy.loginfo(f"Datetime: {datetime.datetime.fromtimestamp(ros_msg.header.stamp.secs)}")
                             else:
                                 rospy.loginfo("[%s] Invalid image file %s", self.__app_name, join(self._image_folder, f))
                             ros_rate.sleep()

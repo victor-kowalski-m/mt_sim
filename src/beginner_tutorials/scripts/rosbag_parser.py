@@ -24,16 +24,16 @@ def parse_rosbag(input, output):
             parsed.write(" ".join([f"{i:.4f}" for i in pose])+"\n")
         bag.close()
 
-in_real_traj_bag = '/home/victor/catkin_ws/data/bags/2024-07-07-20-41-25.bag'
-out_real_traj_txt = '/home/victor/catkin_ws/data/resulting_trajs/real2024-07-07-20-41-25.txt'
+in_real_traj_bag = '/home/victor/maps/rrt_ur_32/2024-07-17-11-18-13.bag'
+out_real_traj_txt = '/home/victor/maps/rrt_ur_32/2024-07-17-11-18-13.txt'
 
 parse_rosbag(in_real_traj_bag, out_real_traj_txt)
 to_rotvec(out_real_traj_txt, out_real_traj_txt)
 
-in_cam_traj_txt = '/home/victor/catkin_ws/data/slam_locs/CamTraj.txt'
-out_cam_traj_txt = '/home/victor/catkin_ws/data/resulting_trajs/cam2024-07-07-20-41-25.txt'
+in_cam_traj_txt = '/home/victor/maps/rrt_ur_32/CamTraj.txt'
+out_cam_traj_txt = '/home/victor/maps/rrt_ur_32/CamTraj_rotvec.txt'
 to_rotvec(in_cam_traj_txt, out_cam_traj_txt)
 
-in_key_traj_txt = '/home/victor/catkin_ws/data/slam_locs/KeyFrameTrajectory.txt'
-out_key_traj_txt = '/home/victor/catkin_ws/data/resulting_trajs/key2024-07-07-20-41-25.txt'
+in_key_traj_txt = '/home/victor/maps/rrt_ur_32/KeyFrameTrajectory.txt'
+out_key_traj_txt = '/home/victor/maps/rrt_ur_32/KeyFrameTrajectory_rotvec.txt'
 to_rotvec(in_key_traj_txt, out_key_traj_txt)

@@ -24,7 +24,7 @@ base_dir = "/home/victor/catkin_ws/data/trajs_to_command"
 
 all = []
 
-for edge in ["astro_spin"]:
+for edge in ["rrt_ur_32"]:
     with open(f'{base_dir}/bsplines/{edge}.dat') as f:
         lines = f.readlines()
         for line in lines:
